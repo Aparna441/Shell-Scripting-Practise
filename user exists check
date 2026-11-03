@@ -1,0 +1,74 @@
+3 ways to write a script to check if user exists using ID, getent and cat
+
+
+#!/bin/bash
+###############################################
+#Script to check if user exists using getent
+###############################################
+
+echo "Enter username to validate: "
+read name
+
+if [ -z "$name" ]
+then
+        echo "Error: Username cannot be empty!"
+        exit 1
+fi
+
+if getent passwd | grep -q "^$name:"
+then
+        echo "User already exists"
+else
+        echo "User does not exists"
+fi
+
+
+################################################################################
+Approach 2
+#!/bin/bash
+###############################################
+#Script to check if user exists using cat
+###############################################
+
+echo "Enter username to validate: "
+read name
+
+if [ -z "$name" ]
+then
+        echo "Error: Username cannot be empty!"
+        exit 1
+fi
+
+if cat /etc/passwd | grep -q "^$name:"
+then
+        echo "User already exists"
+else
+        echo "User does not exists"
+fi
+
+
+###################################################################################
+Approach 3 Most preferred
+
+#!/bin/bash
+###############################################
+#Script to check if user exists
+###############################################
+
+echo "Enter username to validate: "
+read name
+
+if [ -z "$name" ]
+then
+        echo "Error: Username cannot be empty!"
+        exit 1
+fi
+
+if id "$name" &>/dev/null
+then
+        echo "User already exists"
+else
+        echo "User does not exists"
+fi
+
+
