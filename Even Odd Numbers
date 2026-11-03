@@ -1,0 +1,19 @@
+#!/bin/bash
+########################################
+#Script to identify even and odd numbers
+########################################
+
+echo " Enter a number:"
+read num
+
+if [[ "$num" =~ ^-?[0-9]+$ ]]
+then
+        if (( num % 2 ==  0 ))
+        then
+        echo "$num is an Even Number"
+        else
+        echo "$num is an Odd Number"
+        fi
+else
+        echo "Enter a Valid Number."
+fi
